@@ -24,6 +24,7 @@ class MyDataset(Dataset):
             for row in csv_reader:
                 # i = i + 1   # debug
                 # print(i)
+                # data_str = f"{row[0]}"
                 data_str = f"{row[0]}: {row[1]}{self.end_of_text_token}"
                 # training_example = [f"{row[0]}", f"{row[1]}"]   # umrf lable
 
@@ -70,10 +71,10 @@ def train(epochs, data_loader, batch_size, tokenizer, model, device):
                 batch_counter = 0
                 sum_loss = 0.0
 
-    return model
+    return model, tokenizer
 
 
-def save_model(model, name):
+def save_model(model, name, tokenizer, token_name):
     """
     Summary:
         Saving model to the Disk
@@ -83,6 +84,7 @@ def save_model(model, name):
     """
     print("Saving model to Disk")
     torch.save(model.state_dict(), f"{name}.pt")
+    tokenizer.save_vocabulary(token_name)
     return
 
 
@@ -94,19 +96,26 @@ def load_models():
     print('Loading/Downloading GPT-2 Model')
     tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
     model = GPT2LMHeadModel.from_pretrained('gpt2')
+    model.load_state_dict(state_dict=torch.load('myUMRFmodel_aug_step1.pt.pt'))
+
+
     return tokenizer, model
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Arguments for training Text Augmentation model')
 
-    parser.add_argument('--epoch', default=10, type=int, action='store', help='Number of epochs to run')
+    parser.add_argument('--epoch', default=50, type=int, action='store', help='Number of epochs to run')
     parser.add_argument('--warmup', default=300, type=int, action='store', help='Number of warmup steps to run')
-    parser.add_argument('--model_name', default='myUMRFmodel_aug.pt', type=str, action='store', help='Name of the model file')
-    parser.add_argument('--data_file', default='UMRF_train_node_corrected.tsv', type=str, action='store', help='Name of the data file')
+    # parser.add_argument('--model_name', default='myUMRFmodel_aug_step1.pt', type=str, action='store', help='Name of the model file')
+    parser.add_argument('--model_name', default='myUMRFmodel_aug_step2.pt', type=str, action='store', help='Name of the model file')
+
+    # parser.add_argument('--data_file', default='UMRF_train_node_corrected.tsv', type=str, action='store', help='Name of the data file')
+    parser.add_argument('--data_file', default='fine_tune_2.tsv', type=str, action='store', help='Name of the data file')
+
     parser.add_argument('--batch', type=int, default=32, action='store', help='Batch size')
     parser.add_argument('--learning_rate', default=3e-5, type=float, action='store', help='Learning rate for the model')
-    parser.add_argument('--max_len', default=200, type=int, action='store', help='Maximum length of sequence')
+    parser.add_argument('--max_len', default=200, type=int, action='store', help='Maximum length of sequence') # 200
     args = parser.parse_args()
 
     BATCH_SIZE = args.batch
@@ -130,5 +139,5 @@ if __name__ == '__main__':
     scheduler = get_cosine_with_hard_restarts_schedule_with_warmup(optimizer, num_warmup_steps=WARMUP_STEPS,
                                                                    num_training_steps=-1)
 
-    model = train(EPOCHS, LOADER, BATCH_SIZE, TOKENIZER, MODEL, DEVICE)
-    save_model(model, MODEL_NAME)
+    model, tokenizer = train(EPOCHS, LOADER, BATCH_SIZE, TOKENIZER, MODEL, DEVICE)
+    save_model(model, MODEL_NAME, tokenizer, 'tokenizer_dir_2')

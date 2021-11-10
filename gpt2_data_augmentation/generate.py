@@ -25,8 +25,8 @@ class MyDataset(Dataset):
             csv_reader = csv.reader(csv_file, delimiter='\t')
 
             for row in csv_reader:
-                data_str = f"{row[0]}"
-                # data_str = f"{row[0]}: {row[1]}{self.end_of_text_token}"
+                # data_str = f"{row[0]}"
+                data_str = f"{row[0]}: {row[1]}{self.end_of_text_token}"
                 self.data_list.append(data_str)
 
     def __len__(self):
@@ -115,9 +115,9 @@ def load_models(model_name):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Arguments for inferencing Text Augmentation model')
 
-    parser.add_argument('--model_name', default='myUMRFmodel_aug.pt.pt', type=str, action='store', help='Name of the model file')
-    parser.add_argument('--sentences', type=int, default=1, action='store', help='Number of sentences in outputs')
-    parser.add_argument('--data_file', default='UMRF_valid_node_corrected.tsv', type=str, action='store', help='Name of the data file')
+    parser.add_argument('--model_name', default='myUMRFmodel_aug_step2.pt.pt', type=str, action='store', help='Name of the model file')
+    parser.add_argument('--sentences', type=int, default=5, action='store', help='Number of sentences in outputs')
+    parser.add_argument('--data_file', default='UMRF_aug_valid.tsv', type=str, action='store', help='Name of the data file')
     args = parser.parse_args()
     DATA_FILE = args.data_file
     LOADER = get_data_loader(DATA_FILE)
