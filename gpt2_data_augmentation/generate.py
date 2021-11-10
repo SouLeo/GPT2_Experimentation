@@ -115,7 +115,7 @@ def load_models(model_name):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Arguments for inferencing Text Augmentation model')
 
-    parser.add_argument('--model_name', default='myUMRFmodel.pt.pt', type=str, action='store', help='Name of the model file')
+    parser.add_argument('--model_name', default='myUMRFmodel_aug.pt.pt', type=str, action='store', help='Name of the model file')
     parser.add_argument('--sentences', type=int, default=1, action='store', help='Number of sentences in outputs')
     parser.add_argument('--data_file', default='UMRF_valid_node_corrected.tsv', type=str, action='store', help='Name of the data file')
     args = parser.parse_args()
@@ -128,7 +128,7 @@ if __name__ == '__main__':
     SENTENCES = args.sentences
     MODEL_NAME = args.model_name
     # LABEL = LOADER.data_list[46]
-    # LABEL = "sweep for alpha contamination under the table"
+    LABEL = "sweep for alpha contamination under the table"
     LABELS = LOADER.data_list
 
     DEVICE = 'cpu'

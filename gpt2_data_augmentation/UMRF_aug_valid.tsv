@@ -1,0 +1,5 @@
+sweep under the table	{package_name: ta_survey, input_parameters: {object: {pvf_type: string, pvf_example: clock}, verb: {pvf_type: string, pvf_example: Examine}}}
+record a mass of 10 kg	{package_name: ta_record, input_parameters: {verb: {pvf_type: string, pvf_example: record}, data_type: {pvf_type: string, pvf_example: mass}, data_val: {pvf_type: float, pvf_example: 10}, data_unit: {pvf_type: string, pvf_example: kg}}}
+hand me the wrench	{package_name: ta_reach, input_parameters: {verb: {pvf_type: string, pvf_example: hand me}, object: {pvf_type: string, pvf_example: wrench}}}
+look for alpha next to the hand foot monitor	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: look}, location: {pvf_type: string, pvf_example: by the hand foot monitor}}}
+check for alpha next to the table	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: check}, location: {pvf_type: string, pvf_example: next to the table}}}

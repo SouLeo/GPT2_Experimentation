@@ -3,7 +3,6 @@ import os
 import argparse
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel
-import numpy as np
 from torch.utils.data import Dataset, DataLoader
 from transformers import AdamW, get_cosine_with_hard_restarts_schedule_with_warmup
 import warnings
@@ -21,8 +20,10 @@ class MyDataset(Dataset):
 
         with open(data_path) as csv_file:
             csv_reader = csv.reader(csv_file, delimiter='\t')
-
+            # i = 0   # debug
             for row in csv_reader:
+                # i = i + 1   # debug
+                # print(i)
                 data_str = f"{row[0]}: {row[1]}{self.end_of_text_token}"
                 # training_example = [f"{row[0]}", f"{row[1]}"]   # umrf lable
 
@@ -101,7 +102,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--epoch', default=10, type=int, action='store', help='Number of epochs to run')
     parser.add_argument('--warmup', default=300, type=int, action='store', help='Number of warmup steps to run')
-    parser.add_argument('--model_name', default='myUMRFmodel.pt', type=str, action='store', help='Name of the model file')
+    parser.add_argument('--model_name', default='myUMRFmodel_aug.pt', type=str, action='store', help='Name of the model file')
     parser.add_argument('--data_file', default='UMRF_train_node_corrected.tsv', type=str, action='store', help='Name of the data file')
     parser.add_argument('--batch', type=int, default=32, action='store', help='Batch size')
     parser.add_argument('--learning_rate', default=3e-5, type=float, action='store', help='Learning rate for the model')

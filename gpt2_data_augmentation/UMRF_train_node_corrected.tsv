@@ -998,3 +998,21 @@ turn right	{package_name: ta_manoeuvre, input_parameters: {direction: {pvf_type:
 turn right	{package_name: ta_manoeuvre, input_parameters: {direction: {pvf_type: string, pvf_example: right}, verb: {pvf_type: string, pvf_example: turn}}}
 to face lamp	{package_name: ta_orient, input_parameters: {landmark: {pvf_type: string, pvf_example: lamp}, verb: {pvf_type: string, pvf_example: face}}}
 turn the lamp on	{package_name: ta_toggle, input_parameters: {object: {pvf_type: string, pvf_example: lamp}, state: {pvf_type: string, pvf_example: on}, verb: {pvf_type: string, pvf_example: turn}}}
+call the RCT	{package_name: ta_rct, input_parameters: {verb: {pvf_type: string, pvf_example: call}}}
+find the RCT	{package_name: ta_rct, input_parameters: {verb: {pvf_type: string, pvf_example: find}}}
+send for help	{package_name: ta_rct, input_parameters: {verb: {pvf_type: string, pvf_example: help}}}
+can you get the RCT	{package_name: ta_rct, input_parameters: {verb: {pvf_type: string, pvf_example: get}}}
+robot sweep under the glovebox	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: sweep}, location: {pvf_type: string, pvf_example: under the glovebox}}}
+sweep for alpha contamination	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: sweep}}}
+check for alpha contamintation	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: check}}}
+survey under near the hand foot monitor	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: survey}, location: {pvf_type: string, pvf_example: near the hand foot monitor}}}
+check for alpha by the hand foot monitor	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: check}, location: {pvf_type: string, pvf_example: by the hand foot monitor}}}
+sweep for alpha by the door	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: sweep}, location: {pvf_type: string, pvf_example: by the door}}}
+check for contamination near the glovebox	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: check}, location: {pvf_type: string, pvf_example: near the glovebox}}}
+check for contamination near line 3	{package_name: ta_alpha, input_parameters: {verb: {pvf_type: string, pvf_example: check}, location: {pvf_type: string, pvf_example: near line 3}}}
+record a mass of 20 kg	{package_name: ta_record, input_parameters: {verb: {pvf_type: string, pvf_example: record}, data_type: {pvf_type: string, pvf_example: mass}, data_val: {pvf_type: float, pvf_example: 20}, data_unit: {pvf_type: string, pvf_example: kg}}}
+pass the leveling tool	{package_name: ta_reach, input_parameters: {verb: {pvf_type: string, pvf_example: pass}, object: {pvf_type: string, pvf_example: the leveling tool}}}
+pass the calibration probe	{package_name: ta_reach, input_parameters: {verb: {pvf_type: string, pvf_example: pass}, object: {pvf_type: string, pvf_example: the calibration probe}}}
+help me lift the part	{package_name: ta_lift, input_parameters: {verb: {pvf_type: string, pvf_example: lift}, object: {pvf_type: string, pvf_example: the part}}}
+hand me that screwdriver	{package_name: ta_reach, input_parameters: {verb: {pvf_type: string, pvf_example: hand me}, object: {pvf_type: string, pvf_example: that screwdriver}}}
+hold the light	{package_name: ta_hold, input_parameters: {verb: {pvf_type: string, pvf_example: hold}, object: {pvf_type: string, pvf_example: the light}}}
